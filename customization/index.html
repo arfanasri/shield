@@ -1,0 +1,1083 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the official Authentication and Authorization framework for CodeIgniter 4">
+      
+      
+      
+      
+        <link rel="prev" href="../testing/">
+      
+      
+        <link rel="next" href="../forcing_password_reset/">
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+    
+    
+      
+        <title>Customization - CodeIgniter Shield</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.c4a75a56.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Raleway";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/github.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#customizing-shield" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://codeigniter.com" title="CodeIgniter Shield" class="md-header__button md-logo" aria-label="CodeIgniter Shield" data-md-component="logo">
+      
+  <img src="../assets/flame.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CodeIgniter Shield
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Customization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codeigniter4/shield" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://codeigniter.com" title="CodeIgniter Shield" class="md-nav__button md-logo" aria-label="CodeIgniter Shield" data-md-component="logo">
+      
+  <img src="../assets/flame.svg" alt="logo">
+
+    </a>
+    CodeIgniter Shield
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codeigniter4/shield" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        Quick Start Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization/" class="md-nav__link">
+        Authorization
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth_actions/" class="md-nav__link">
+        Auth Actions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Customization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Customization
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-table-names" class="md-nav__link">
+    Custom Table Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-configuration" class="md-nav__link">
+    Route Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-redirect-urls" class="md-nav__link">
+    Custom Redirect URLs
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Redirect URLs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-login-redirect" class="md-nav__link">
+    Customize Login Redirect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-register-redirect" class="md-nav__link">
+    Customize Register Redirect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-logout-redirect" class="md-nav__link">
+    Customize Logout Redirect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-controllers" class="md-nav__link">
+    Extending the Controllers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-custom-view-libraries" class="md-nav__link">
+    Integrating Custom View Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-validation-rules" class="md-nav__link">
+    Custom Validation Rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Validation Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-user-provider" class="md-nav__link">
+    Custom User Provider
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-login-identifier" class="md-nav__link">
+    Custom Login Identifier
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forcing_password_reset/" class="md-nav__link">
+        Forcing Password Reset
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banning_users/" class="md-nav__link">
+        Banning Users
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session_auth_event_and_logging/" class="md-nav__link">
+        Session Authenticator Event and Logging
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_14">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/api_tokens/" class="md-nav__link">
+        Protecting an API with Access Tokens
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/mobile_apps/" class="md-nav__link">
+        Mobile Authentication with Access Tokens
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/strengthen_password/" class="md-nav__link">
+        How to Strengthen the Password
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-table-names" class="md-nav__link">
+    Custom Table Names
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-configuration" class="md-nav__link">
+    Route Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-redirect-urls" class="md-nav__link">
+    Custom Redirect URLs
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Redirect URLs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customize-login-redirect" class="md-nav__link">
+    Customize Login Redirect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-register-redirect" class="md-nav__link">
+    Customize Register Redirect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customize-logout-redirect" class="md-nav__link">
+    Customize Logout Redirect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-controllers" class="md-nav__link">
+    Extending the Controllers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrating-custom-view-libraries" class="md-nav__link">
+    Integrating Custom View Libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-validation-rules" class="md-nav__link">
+    Custom Validation Rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Validation Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    Login
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-user-provider" class="md-nav__link">
+    Custom User Provider
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-login-identifier" class="md-nav__link">
+    Custom Login Identifier
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="customizing-shield">Customizing Shield</h1>
+<ul>
+<li><a href="#customizing-shield">Customizing Shield</a></li>
+<li><a href="#custom-table-names">Custom Table Names</a></li>
+<li><a href="#route-configuration">Route Configuration</a></li>
+<li><a href="#custom-redirect-urls">Custom Redirect URLs</a><ul>
+<li><a href="#customize-login-redirect">Customize Login Redirect</a></li>
+<li><a href="#customize-register-redirect">Customize Register Redirect</a></li>
+<li><a href="#customize-logout-redirect">Customize Logout Redirect</a></li>
+</ul>
+</li>
+<li><a href="#extending-the-controllers">Extending the Controllers</a></li>
+<li><a href="#integrating-custom-view-libraries">Integrating Custom View Libraries</a></li>
+<li><a href="#custom-validation-rules">Custom Validation Rules</a><ul>
+<li><a href="#registration">Registration</a></li>
+<li><a href="#login">Login</a></li>
+</ul>
+</li>
+<li><a href="#custom-user-provider">Custom User Provider</a></li>
+<li><a href="#custom-login-identifier">Custom Login Identifier</a></li>
+</ul>
+<h2 id="custom-table-names">Custom Table Names</h2>
+<p>If you want to change the default table names, you can change the table names
+in <strong>app/Config/Auth.php</strong>.</p>
+<pre class="highlight"><code class="language-php">public array $tables = [
+    'users'             =&gt; 'users',
+    'identities'        =&gt; 'auth_identities',
+    'logins'            =&gt; 'auth_logins',
+    'token_logins'      =&gt; 'auth_token_logins',
+    'remember_tokens'   =&gt; 'auth_remember_tokens',
+    'groups_users'      =&gt; 'auth_groups_users',
+    'permissions_users' =&gt; 'auth_permissions_users',
+];</code></pre>
+<p>Set the table names that you want in the array values.</p>
+<blockquote>
+<p><strong>Note</strong> You must change the table names before running database migrations.</p>
+</blockquote>
+<h2 id="route-configuration">Route Configuration</h2>
+<p>If you need to customize how any of the auth features are handled, you will likely need to update the routes to point to the correct controllers. You can still use the <code>service('auth')-&gt;routes()</code> helper, but you will need to pass the <code>except</code> option with a list of routes to customize:</p>
+<pre class="highlight"><code class="language-php">service('auth')-&gt;routes($routes, ['except' =&gt; ['login', 'register']]);</code></pre>
+<p>Then add the routes to your customized controllers:</p>
+<pre class="highlight"><code class="language-php">$routes-&gt;get('login', '\App\Controllers\Auth\LoginController::loginView');
+$routes-&gt;get('register', '\App\Controllers\Auth\RegisterController::registerView');</code></pre>
+<h2 id="custom-redirect-urls">Custom Redirect URLs</h2>
+<h3 id="customize-login-redirect">Customize Login Redirect</h3>
+<p>You can customize where a user is redirected to on login with the <code>loginRedirect()</code> method of the <strong>app/Config/Auth.php</strong> config file. This is handy if you want to redirect based on user group or other criteria.</p>
+<pre class="highlight"><code class="language-php">public function loginRedirect(): string
+{
+    $url = auth()-&gt;user()-&gt;inGroup('admin')
+        ? '/admin'
+        : setting('Auth.redirects')['login'];
+
+    return $this-&gt;getUrl($url);
+}</code></pre>
+<p>Oftentimes, you will want to have different redirects for different user groups. A simple example
+might be that you want admins redirected to <code>/admin</code> while all other groups redirect to <code>/</code>.
+The <strong>app/Config/Auth.php</strong> config file also includes methods that you can add additional logic to in order to
+achieve this:</p>
+<pre class="highlight"><code class="language-php">public function loginRedirect(): string
+{
+    if (auth()-&gt;user()-&gt;can('admin.access')) {
+        return '/admin';
+    }
+
+    $url = setting('Auth.redirects')['login'];
+
+    return $this-&gt;getUrl($url);
+}</code></pre>
+<h3 id="customize-register-redirect">Customize Register Redirect</h3>
+<p>You can customize where a user is redirected to after registration in the <code>registerRedirect()</code> method of the <strong>app/Config/Auth.php</strong> config file.</p>
+<pre class="highlight"><code class="language-php">public function registerRedirect(): string
+{
+    $url = setting('Auth.redirects')['register'];
+
+    return $this-&gt;getUrl($url);
+}</code></pre>
+<h3 id="customize-logout-redirect">Customize Logout Redirect</h3>
+<p>The logout redirect can also be overridden by the <code>logoutRedirect()</code> method of the <strong>app/Config/Auth.php</strong> config file. This will not be used as often as login and register, but you might find the need. For example, if you programatically logged a user out you might want to take them to a page that specifies why they were logged out. Otherwise, you might take them to the home page or even the login page.</p>
+<pre class="highlight"><code class="language-php">public function logoutRedirect(): string
+{
+    $url = setting('Auth.redirects')['logout'];
+
+    return $this-&gt;getUrl($url);
+}</code></pre>
+<h2 id="extending-the-controllers">Extending the Controllers</h2>
+<p>Shield has the following controllers that can be extended to handle
+various parts of the authentication process:</p>
+<ul>
+<li><strong>ActionController</strong> handles the after-login and after-registration actions, like Two Factor Authentication and Email Verification.</li>
+<li><strong>LoginController</strong> handles the login process.</li>
+<li><strong>RegisterController</strong> handles the registration process. Overriding this class allows you to customize the User Provider, the User Entity, and the validation rules.</li>
+<li><strong>MagicLinkController</strong> handles the "lost password" process that allows a user to login with a link sent to their email. This allows you to
+    override the message that is displayed to a user to describe what is happening, if you'd like to provide more information than simply swapping out the view used.</li>
+</ul>
+<p>It is not recommended to copy the entire controller into <strong>app/Controllers</strong> and change its namespace. Instead, you should create a new controller that extends
+the existing controller and then only override the methods needed. This allows the other methods to stay up to date with any security
+updates that might happen in the controllers.</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+
+namespace App\Controllers;
+
+use CodeIgniter\Shield\Controllers\LoginController as ShieldLogin;
+
+class LoginController extends ShieldLogin
+{
+    public function logoutAction()
+    {
+        // new functionality
+    }
+}</code></pre>
+<h2 id="integrating-custom-view-libraries">Integrating Custom View Libraries</h2>
+<p>If your application uses a different method to convert view files to HTML than CodeIgniter's built-in <code>view()</code> helper you can easily integrate your system anywhere that a view is rendered within Shield. All controllers and actions use the <code>CodeIgniter\Shield\Traits\Viewable</code> trait which provides a simple <code>view()</code> method that takes the same arguments as the <code>view()</code> helper. This allows you to extend the Action or Controller and only change the single method of rendering the view, leaving all of the logic untouched so your app will not need to maintain Shield logic when it doesn't need to change it.</p>
+<pre class="highlight"><code class="language-php">use Acme\Themes\Traits\Themeable;
+use CodeIgniter\Shield\Controllers\LoginController;
+
+class MyLoginController extends LoginController
+{
+    use Themable;
+
+    protected function view(string $view, array $data = [], array $options = []): string
+    {
+        return $this-&gt;themedView($view, $data, $options);
+    }
+}</code></pre>
+<h2 id="custom-validation-rules">Custom Validation Rules</h2>
+<h3 id="registration">Registration</h3>
+<p>Shield has the following rules for registration:</p>
+<pre class="highlight"><code class="language-php">[
+    'username' =&gt; [
+        'label' =&gt; 'Auth.username',
+        'rules' =&gt; [
+            'required',
+            'max_length[30]',
+            'min_length[3]',
+            'regex_match[/\A[a-zA-Z0-9\.]+\z/]',
+            'is_unique[users.username]',
+        ],
+    ],
+    'email' =&gt; [
+        'label' =&gt; 'Auth.email',
+        'rules' =&gt; [
+            'required',
+            'max_length[254]',
+            'valid_email',
+            'is_unique[auth_identities.secret]',
+        ],
+    ],
+    'password' =&gt; [
+        'label' =&gt; 'Auth.password',
+        'rules' =&gt; 'required|strong_password',
+    ],
+    'password_confirm' =&gt; [
+        'label' =&gt; 'Auth.passwordConfirm',
+        'rules' =&gt; 'required|matches[password]',
+    ],
+];</code></pre>
+<blockquote>
+<p><strong>Note</strong> If you customize the table names, the table names
+(<code>users</code> and <code>auth_identities</code>) in the above rules will be automatically
+changed. The rules are implemented in
+<code>RegisterController::getValidationRules()</code>.</p>
+</blockquote>
+<p>If you need a different set of rules for registration, you can specify them in your <code>Validation</code> configuration (<strong>app/Config/Validation.php</strong>) like:</p>
+<pre class="highlight"><code class="language-php">    //--------------------------------------------------------------------
+    // Rules For Registration
+    //--------------------------------------------------------------------
+    public $registration = [
+        'username' =&gt; [
+            'label' =&gt; 'Auth.username',
+            'rules' =&gt; [
+                'required',
+                'max_length[30]',
+                'min_length[3]',
+                'regex_match[/\A[a-zA-Z0-9\.]+\z/]',
+                'is_unique[users.username]',
+            ],
+        ],
+        'email' =&gt; [
+            'label' =&gt; 'Auth.email',
+            'rules' =&gt; [
+                'required',
+                'max_length[254]',
+                'valid_email',
+                'is_unique[auth_identities.secret]',
+            ],
+        ],
+        'password' =&gt; [
+            'label' =&gt; 'Auth.password',
+            'rules' =&gt; 'required|strong_password',
+        ],
+        'password_confirm' =&gt; [
+            'label' =&gt; 'Auth.passwordConfirm',
+            'rules' =&gt; 'required|matches[password]',
+        ],
+    ];</code></pre>
+<blockquote>
+<p><strong>Note</strong> If you customize the table names, set the correct table names in the
+rules.</p>
+</blockquote>
+<h3 id="login">Login</h3>
+<p>Similar to the process for validation rules in the <strong>Registration</strong> section, you can add rules for the login form to <strong>app/Config/Validation.php</strong> and change the rules.</p>
+<pre class="highlight"><code class="language-php">    //--------------------------------------------------------------------
+    // Rules For Login
+    //--------------------------------------------------------------------
+    public $login = [
+        // 'username' =&gt; [
+        //     'label' =&gt;  'Auth.username',
+        //     'rules' =&gt; 'required|max_length[30]|min_length[3]|regex_match[/\A[a-zA-Z0-9\.]+\z/]',
+        // ],
+        'email' =&gt; [
+            'label' =&gt;  'Auth.email',
+            'rules' =&gt; 'required|max_length[254]|valid_email',
+        ],
+        'password' =&gt; [
+            'label' =&gt;  'Auth.password',
+            'rules' =&gt; 'required',
+        ],
+    ];</code></pre>
+<h2 id="custom-user-provider">Custom User Provider</h2>
+<p>If you want to customize user attributes, you need to create your own
+<a href="../concepts/#user-providers">User Provider</a> class.
+The only requirement is that your new class MUST extend the provided <code>CodeIgniter\Shield\Models\UserModel</code>.</p>
+<p>Shield has a CLI command to quickly create a custom <code>UserModel</code> class by running the following
+command in the terminal:</p>
+<pre class="highlight"><code class="language-console">php spark shield:model UserModel</code></pre>
+<p>The class name is optional. If none is provided, the generated class name would be <code>UserModel</code>.</p>
+<p>After creating the class, set the <code>$userProvider</code> property in <strong>app/Config/Auth.php</strong> as follows:</p>
+<pre class="highlight"><code class="language-php">public string $userProvider = \App\Models\UserModel::class;</code></pre>
+<h2 id="custom-login-identifier">Custom Login Identifier</h2>
+<p>If your application has a need to use something other than <code>email</code> or <code>username</code>, you may specify any valid column within the <code>users</code> table that you may have added. This allows you to easily use phone numbers, employee or school IDs, etc as the user identifier. You must implement the following steps to set this up:</p>
+<p>This only works with the Session authenticator.</p>
+<ol>
+<li>Create a <a href="http://codeigniter.com/user_guide/dbmgmt/migration.html">migration</a> that adds a new column to the <code>users</code> table.</li>
+<li>
+<p>Edit <code>app/Config/Auth.php</code> so that the new column you just created is within the <code>$validFields</code> array.</p>
+<pre class="highlight"><code class="language-php">public array $validFields = [
+    'employee_id'
+];</code></pre>
+<p>If you have multiple login forms on your site that use different credentials, you must have all of the valid identifying fields in the array.</p>
+<pre class="highlight"><code class="language-php">public array $validFields = [
+    'email',
+    'employee_id'
+];</code></pre>
+<blockquote>
+<p><strong>Warning</strong>
+It is very important for security that if you add a new column for identifier you must write a new <strong>Validation Rules</strong> and then set it using the <a href="https://github.com/codeigniter4/shield/blob/develop/docs/customization.md#custom-validation-rules">custom-validation-rules</a> description.</p>
+</blockquote>
+</li>
+<li>
+<p>Edit the login form to change the name of the default <code>email</code> input to the new field name.</p>
+<pre class="highlight"><code class="language-php">&lt;!-- Email --&gt;
+&lt;div class="mb-2"&gt;
+    &lt;input type="text" class="form-control" name="employee_id" autocomplete="new-employee-id" placeholder="12345" value="&lt;?= old('employee_id') ?&gt;" required /&gt;
+&lt;/div&gt;</code></pre>
+</li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/codeigniter4/shield" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+      
+        <script src="../assets/hljs.js"></script>
+      
+    
+  </body>
+</html>
